@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+
+/* FUNDO ESCURO */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #202020;
+}
+
+/* OVERLAY (fundo escuro transparente) */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CAIXA DO POPUP */
+.popup {
+    background: #2c2c2c;
+    padding: 30px;
+    border-radius: 12px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* TÍTULO */
+.popup h1 {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* INPUTS */
+.popup input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* BOTÃO */
+.popup button {
+    width: 100%;
+    padding: 10px;
+    background: #00c853;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup button:hover {
+    background: #00e676;
+}
+
+/* MENSAGEM */
+#msg {
+    margin-top: 10px;
+    color: #ff5252;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+    <div class="popup">
+
+        <h1>Login</h1>
+
+        <input type="text" id="usuario" placeholder="Usuário">
+        <input type="password" id="senha" placeholder="Senha">
+
+        <button onclick="entrar()">Entrar</button>
+
+        <h3 id="msg"></h3>
+
+    </div>
+</div>
+
+<script>
+
+function entrar() {
+
+    let user = document.getElementById("usuario").value.trim();
+    let pass = document.getElementById("senha").value.trim();
+
+    let userSalvo = localStorage.getItem("usuario");
+    let passSalva = localStorage.getItem("senha");
+
+    if (user === userSalvo && pass === passSalva) {
+
+        localStorage.setItem("logado", "sim");
+
+        window.location.href = "sistema.html";
+
+    } else {
+        document.getElementById("msg").innerText = "Login inválido!";
+    }
+}
+
+</script>
+
+</body>
+</html>
+
